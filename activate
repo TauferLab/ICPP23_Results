@@ -7,6 +7,11 @@ THIS=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 # Is there a Python environment to load?
 #source $THIS/venv/bin/activate
 
+# Additional PATH/LD_LIBRARY_PATH/... to consider?
+#export PATH=$PATH:$THIS/bin
+#export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:$THIS/lib
+
+
 current_branch=$(git branch --show-current)
 
 export RESULTS_PATH=$THIS/data/${current_branch}
