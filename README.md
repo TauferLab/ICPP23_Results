@@ -11,5 +11,8 @@ This repository is used to collect measurement as well as scripting to explore a
     git clone git@github.com:TauferLab/Results_Deduplication_Module.git
     ./init.sh
     
+
+In job scripts/post-processing scripts consider using:
+
     # source to obtain RESULTS_PATH environment variable, extend PATH/LD_LIBRARY_PATH/...
-    source $PATH/activate
+    source <path-to-repo>/activate
