@@ -9,5 +9,5 @@ THIS=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
 
 current_branch=$(git branch --show-current)
 
-export EXPERIMENTS_RESULTS_PATH=$THIS/data/${current_branch}
->&2 echo "export EXPERIMENTS_RESULTS_PATH="${EXPERIMENTS_RESULTS_PATH}
+export RESULTS_PATH=$THIS/data/${current_branch}
+>&2 echo "export RESULTS_PATH="${RESULTS_PATH}
