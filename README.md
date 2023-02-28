@@ -9,6 +9,7 @@ This repository is used to collect measurement as well as scripting to explore a
 
     # Clone and be prompted for new branch (e.g., per system or measurement campaign)
     git clone git@github.com:TauferLab/Results_Deduplication_Module.git
+    cd Results_Deduplication_Module 
     ./init.sh
     
 
