@@ -1,0 +1,13 @@
+##!/bin/bash
+
+# make sourceable from everywhere
+THIS=$(cd $(dirname "${BASH_SOURCE[0]}") && pwd)
+#>&2 echo $THIS
+
+# Is there a Python environment to load?
+#source $THIS/venv/bin/activate
+
+current_branch=$(git branch --show-current)
+
+export EXPERIMENTS_RESULTS_PATH=$THIS/data/${current_branch}
+>&2 echo "export EXPERIMENTS_RESULTS_PATH="${EXPERIMENTS_RESULTS_PATH}
