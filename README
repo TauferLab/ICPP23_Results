@@ -1,0 +1,62 @@
+===================================================================================================
+ Instructions
+
+This repository contains the raw logs and scripts necessary to reproduce the result figures.
+
+===================================================================================================
+ Description of repo
+===================================================================================================
+Data is contained in the data directory. 
+The directory contains the preprocessed csv files that act as inputs to the plotting scripts. 
+Preproccessed files
+  Test varying chunk size 
+    asia_osm_vary_chunk_size.csv
+    hugebubbles_vary_chunk_size.csv
+    message_race_vary_chunk_size.csv
+    unstructured_mesh_vary_chunk_size.csv
+  Test varying the frequecy of checkpoints
+    vary_chkpt_freq_64.csv
+  Test scaling performance
+    scaling_test_data.csv
+
+The raw data is archived in raw_logs.tar.gz. 
+
+Preprocessing and visualization scripts are located in the notebooks directory.
+  requirements.txt             # Python dependencies
+  clean_nvcomp_logs.sh         # Script for removing unnecessary headers from nvcomp logs
+  extract_data.py              # Main script for preprocessing logs (used from bash scripts)
+  preprocess_chunk_size.sh     # Shell script for preprocessing logs for Figure 4
+  preprocess_chkpt_freq.sh     # Shell script for preprocessing logs for Figure 5
+  preprocess_scaling_data.sh   # Shell script for preprocessing logs for Figure 6
+  plot_chunk_size.py           # Plotting script for Figure 4
+  plot_chkpt_freq.py           # Plotting script for Figure 5
+  plot_scaling.py              # Plotting script for Figure 6
+
+===================================================================================================
+ Preprocessing data
+===================================================================================================
+Using the preprocessing scripts we can clean the raw data and produce the csv input files.
+1) First untar raw_logs.tar.gz (Best to make a copy elsewhere)
+2) Call each preprocessing script with the path to the raw_logs directory as the only argument. Scripts will output the preprocessed files
+  . preprocess_chunk_size.sh ${raw_logs_dir}
+  . preprocess_chkpt_freq.sh ${raw_logs_dir}
+  . preprocess_scaling_data.sh ${raw_logs_dir}
+ 
+
+===================================================================================================
+ Visualization
+===================================================================================================
+To generate figures call the plotting scripts for each cleaned csv file. Note that X server session
+is needed to visualize the figures.
+
+# Figure 4
+python plot_chunk_size.py asia_osm_vary_chunk_size.csv
+python plot_chunk_size.py hugebubbles_vary_chunk_size.csv
+python plot_chunk_size.py message_race_vary_chunk_size.csv
+python plot_chunk_size.py unstructured_mesh_vary_chunk_size.csv
+
+# Figure 5
+python plot_chkpt_freq.py vary_chkpt_freq_64.csv
+
+# Figure 6
+python plot_scaling.py scaling_test_data.csv

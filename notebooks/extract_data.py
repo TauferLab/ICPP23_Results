@@ -109,6 +109,7 @@ else:
         for directory in directories:
             print(directory)
             name = directory.split('/')
+            print(directory.split('/'))
             scale = ''.join(filter(str.isdigit, name[1]))
             for root,dirs,files in os.walk(directory):
                 frame_list = []
@@ -134,7 +135,8 @@ else:
                             data_dict['Uncompressed Size'].append(temp_df.loc[i,'Ucompressed size in bytes'])
                             data_dict['Compressed Size'].append(temp_df.loc[i,'Compressed size in bytes'])
                             data_dict['Max Memory Usage'].append(temp_df.loc[i,'Max GPU Memory (B)'])
-                            data_dict['Compression Throughput'].append(temp_df.loc[i,'Compression throughput (uncompressed) in GB/s']*10**9)
+                            val = temp_df.loc[i,'Compression throughput (uncompressed) in GB/s']
+                            data_dict['Compression Throughput'].append(float(val)*10**9)
                             data_dict['Compression Runtime'].append(temp_df.loc[i, 'Computation time'] + temp_df.loc[0, 'Copy time'])
         for k,v in data_dict.items():
             print(k + " " + str(len(v)))
@@ -179,9 +181,13 @@ else:
         mapping = {'Full': 0, 'Basic': 1, 'List': 2, 'TreeLowOffset': 3, 'TreeLowRoot': 4, 0:5, 1:6, 2:7, 3:8, 4:9, 5:10, 6:11, 7:12, 8:13, 9:14, 10:15, 11:16, 12:17, 13:18, 14:19, 15:20, 16:21, 17:22, 18:23, 19:24, 20:25}
         dedup_df = pd.concat(frames)
         
+        print('Scenario', args.scenario)
         if args.scenario != '':
             dedup_df['Scenario'] = args.scenario[0]
-        dedup_df['Number of Chkpts'] = args.num_chkpts[0]
+        if isinstance(args.num_chkpts, int):
+            dedup_df['Number of Chkpts'] = args.num_chkpts
+        else:
+            dedup_df['Number of Chkpts'] = args.num_chkpts[0]
         print(dedup_df)
         dedup_df = dedup_df.sort_values(by=['Chkpt ID', 'Approach'], key=lambda o: o.apply(lambda x: mapping[x]))
         dedup_df['Compression Ratio'] = dedup_df['Uncompressed Size'] / (dedup_df['Data Size'] + dedup_df['Metadata Size'])
