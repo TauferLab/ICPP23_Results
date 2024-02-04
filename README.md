@@ -1,4 +1,9 @@
+# Overview
+Data and scripts for reproducing figures in paper:
 
+N. Tan, B. Nicolae, J. Luettgau, J. Marquez, K. Teranishi, N. Morales, S. Bhowmick, M. Taufer, and F. Cappello. Scalable Checkpointing of Applications with Sparsely Updated Data. In Proceedings of the 52nd International Conference on Parallel Processing (ICPP), 2023.
+
+This paper received three ACM badges: result replicated, artifact available, and artifact evaluated-functional.
 
 # Results_Deduplication_Module
 
@@ -17,3 +22,4 @@ In job scripts/post-processing scripts consider using:
 
     # source to obtain RESULTS_PATH environment variable, extend PATH/LD_LIBRARY_PATH/...
     source <path-to-repo>/activate
+
